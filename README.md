@@ -7,3 +7,4 @@ Used technologies:
 * Java 18
 * Spring MVC
 * Logback
+* Jackson

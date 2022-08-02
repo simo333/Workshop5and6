@@ -8,3 +8,4 @@ Used technologies:
 * Spring MVC
 * Logback
 * Jackson
+* Spring JDBC

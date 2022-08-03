@@ -1,7 +1,6 @@
 package pl.workshop5.model;
 
 import org.springframework.context.annotation.Bean;
-import org.springframework.context.annotation.ComponentScan;
 import org.springframework.jdbc.core.RowMapper;
 import org.springframework.stereotype.Component;
 

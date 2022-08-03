@@ -40,7 +40,8 @@ public class BookDao {
     }
 
     public void update(Long id, Book book) {
-        Object[] bookParams = {book.getIsbn(), book.getTitle(), book.getAuthor(), book.getPublisher(), book.getType(), id};
+        Object[] bookParams = 
+                { book.getIsbn(), book.getTitle(), book.getAuthor(), book.getPublisher(), book.getType(), id };
         if (one(id) != null) {
             jdbcTemplate.update(UPDATE_QUERY, bookParams);
         }

@@ -1,11 +1,20 @@
 package pl.workshop5.model;
 
+import org.springframework.context.annotation.Bean;
+import org.springframework.context.annotation.ComponentScan;
 import org.springframework.jdbc.core.RowMapper;
+import org.springframework.stereotype.Component;
 
 import java.sql.ResultSet;
 import java.sql.SQLException;
 
+@Component
 public class BookRowMapper implements RowMapper<Book> {
+    @Bean
+    public BookRowMapper getInstance() {
+        return new BookRowMapper();
+    }
+
     @Override
     public Book mapRow(ResultSet rs, int rowNum) throws SQLException {
         Book book = new Book();

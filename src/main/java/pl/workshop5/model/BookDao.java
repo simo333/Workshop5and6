@@ -1,11 +1,14 @@
 package pl.workshop5.model;
 
+import org.springframework.http.HttpStatus;
 import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.jdbc.core.RowMapper;
 import org.springframework.stereotype.Service;
+import pl.workshop5.exception.ApiRequestException;
 
 import javax.sql.DataSource;
 import java.util.List;
+import java.util.Optional;
 
 @Service
 public class BookDao {
@@ -35,13 +38,14 @@ public class BookDao {
     }
 
     public Book one(Long id) {
-        //TODO throw exception when null
-        return jdbcTemplate.queryForObject(FIND_BY_ID_QUERY, bookRowMapper, id);
+        return Optional.ofNullable(jdbcTemplate.queryForObject(FIND_BY_ID_QUERY, bookRowMapper, id))
+                .orElseThrow(() -> new ApiRequestException("Book not found. For id " + id, HttpStatus.NOT_FOUND));
     }
 
+
     public void update(Long id, Book book) {
-        Object[] bookParams = 
-                { book.getIsbn(), book.getTitle(), book.getAuthor(), book.getPublisher(), book.getType(), id };
+        Object[] bookParams =
+                {book.getIsbn(), book.getTitle(), book.getAuthor(), book.getPublisher(), book.getType(), id};
         if (one(id) != null) {
             jdbcTemplate.update(UPDATE_QUERY, bookParams);
         }

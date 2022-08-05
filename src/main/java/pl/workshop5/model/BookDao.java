@@ -35,23 +35,21 @@ public class BookDao {
     }
 
     public Book one(Long id) {
-        //TODO throw exception when null
         return jdbcTemplate.queryForObject(FIND_BY_ID_QUERY, bookRowMapper, id);
     }
 
+
     public void update(Long id, Book book) {
-        Object[] bookParams = 
-                { book.getIsbn(), book.getTitle(), book.getAuthor(), book.getPublisher(), book.getType(), id };
+        Object[] bookParams =
+                {book.getIsbn(), book.getTitle(), book.getAuthor(), book.getPublisher(), book.getType(), id};
         if (one(id) != null) {
             jdbcTemplate.update(UPDATE_QUERY, bookParams);
         }
-        //TODO throw exception
     }
 
     public void delete(Long id) {
         if (one(id) != null) {
             jdbcTemplate.update(DELETE_BY_ID_QUERY, id);
         }
-        //TODO throw exception
     }
 }

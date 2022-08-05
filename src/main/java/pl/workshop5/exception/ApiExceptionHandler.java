@@ -41,4 +41,13 @@ public class ApiExceptionHandler {
         );
         return new ResponseEntity<>(apiException, HttpStatus.BAD_REQUEST);
     }
+
+    @ExceptionHandler(value = EntityNotValidException.class)
+    public ResponseEntity<ApiException> handleEntityNotValidException(EntityNotValidException e) {
+        ApiException apiException = new ApiException(
+                e.getErrorList().toString(),
+                HttpStatus.NOT_FOUND
+        );
+        return new ResponseEntity<>(apiException, HttpStatus.BAD_REQUEST);
+    }
 }

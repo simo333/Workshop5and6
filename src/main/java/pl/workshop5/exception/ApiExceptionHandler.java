@@ -29,7 +29,7 @@ public class ApiExceptionHandler {
                 e.getMessage(),
                 HttpStatus.NOT_FOUND
         );
-        return new ResponseEntity<>(apiException, HttpStatus.NOT_FOUND);
+        return new ResponseEntity<>(apiException, HttpStatus.BAD_REQUEST);
     }
 
     @ExceptionHandler(value = HttpMessageNotReadableException.class)
@@ -39,6 +39,6 @@ public class ApiExceptionHandler {
                 message,
                 HttpStatus.NOT_FOUND
         );
-        return new ResponseEntity<>(apiException, HttpStatus.NOT_FOUND);
+        return new ResponseEntity<>(apiException, HttpStatus.BAD_REQUEST);
     }
 }

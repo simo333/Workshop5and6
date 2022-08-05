@@ -4,7 +4,6 @@ import org.springframework.http.HttpStatus;
 import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.jdbc.core.RowMapper;
 import org.springframework.stereotype.Service;
-import pl.workshop5.exception.ApiRequestException;
 
 import javax.sql.DataSource;
 import java.util.List;
@@ -38,8 +37,7 @@ public class BookDao {
     }
 
     public Book one(Long id) {
-        return Optional.ofNullable(jdbcTemplate.queryForObject(FIND_BY_ID_QUERY, bookRowMapper, id))
-                .orElseThrow(() -> new ApiRequestException("Book not found. For id " + id, HttpStatus.NOT_FOUND));
+        return jdbcTemplate.queryForObject(FIND_BY_ID_QUERY, bookRowMapper, id);
     }
 
 
@@ -49,13 +47,11 @@ public class BookDao {
         if (one(id) != null) {
             jdbcTemplate.update(UPDATE_QUERY, bookParams);
         }
-        //TODO throw exception
     }
 
     public void delete(Long id) {
         if (one(id) != null) {
             jdbcTemplate.update(DELETE_BY_ID_QUERY, id);
         }
-        //TODO throw exception
     }
 }

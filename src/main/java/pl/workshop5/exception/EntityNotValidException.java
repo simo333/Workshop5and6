@@ -16,4 +16,14 @@ public class EntityNotValidException extends RuntimeException {
     public Set<String> getErrorList() {
         return errorList;
     }
+
+    public String getErrorListString() {
+        StringBuilder list = new StringBuilder();
+        if (!errorList.isEmpty()) {
+            for (String error : errorList) {
+                list.append(error).append(",");
+            }
+        }
+        return String.valueOf(list);
+    }
 }

@@ -31,7 +31,7 @@ public class BookDao {
 
     public void add(Book book) {
         Set<String> errorList = bookValidator.validate(book);
-        if(!errorList.isEmpty()) {
+        if (!errorList.isEmpty()) {
             throw new EntityNotValidException(errorList);
         }
 
@@ -50,7 +50,7 @@ public class BookDao {
 
     public void update(Long id, Book book) {
         Set<String> errorList = bookValidator.validate(book);
-        if(!errorList.isEmpty()) {
+        if (!errorList.isEmpty()) {
             throw new EntityNotValidException(errorList);
         }
 

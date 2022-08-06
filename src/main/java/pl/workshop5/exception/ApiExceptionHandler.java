@@ -35,19 +35,21 @@ public class ApiExceptionHandler {
     @ExceptionHandler(value = HttpMessageNotReadableException.class)
     public ResponseEntity<ApiException> handleHttpMessageNotReadableException(HttpMessageNotReadableException e) {
         String message = "Required request body is missing";
+        HttpStatus httpStatus = HttpStatus.BAD_REQUEST;
         ApiException apiException = new ApiException(
                 message,
-                HttpStatus.NOT_FOUND
+                httpStatus
         );
-        return new ResponseEntity<>(apiException, HttpStatus.BAD_REQUEST);
+        return new ResponseEntity<>(apiException, httpStatus);
     }
 
     @ExceptionHandler(value = EntityNotValidException.class)
     public ResponseEntity<ApiException> handleEntityNotValidException(EntityNotValidException e) {
+        HttpStatus httpStatus = HttpStatus.BAD_REQUEST;
         ApiException apiException = new ApiException(
-                e.getErrorList().toString(),
-                HttpStatus.NOT_FOUND
+                e.getErrorListString(),
+                httpStatus
         );
-        return new ResponseEntity<>(apiException, HttpStatus.BAD_REQUEST);
+        return new ResponseEntity<>(apiException, httpStatus);
     }
 }

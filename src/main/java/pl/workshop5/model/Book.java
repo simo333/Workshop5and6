@@ -1,6 +1,12 @@
 package pl.workshop5.model;
 
+import javax.persistence.*;
+
+@Entity
+@Table(name = "books")
 public class Book {
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
     private String isbn;
     private String title;
@@ -8,8 +14,7 @@ public class Book {
     private String publisher;
     private String type;
 
-    public Book(Long id, String isbn, String title, String author, String publisher, String type) {
-        this.id = id;
+    public Book(String isbn, String title, String author, String publisher, String type) {
         this.isbn = isbn;
         this.title = title;
         this.author = author;

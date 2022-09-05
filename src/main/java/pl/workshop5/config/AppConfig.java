@@ -16,7 +16,7 @@ import javax.persistence.EntityManagerFactory;
 @EnableWebMvc
 @ComponentScan(basePackages = "pl.workshop5")
 @EnableTransactionManagement
-@EnableJpaRepositories
+@EnableJpaRepositories(basePackages = "pl.workshop5.repository")
 public class AppConfig implements WebMvcConfigurer {
     @Bean
     public LocalEntityManagerFactoryBean entityManagerFactory() {

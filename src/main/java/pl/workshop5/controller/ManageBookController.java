@@ -66,8 +66,7 @@ public class ManageBookController {
     }
 
     @PostMapping("/update")
-    public String updateBook(@Valid Book book, BindingResult result, Model model) {
-        System.out.println(model.getAttribute("id"));
+    public String updateBook(@Valid Book book, BindingResult result) {
         if (result.hasErrors()) {
             return "books/update";
         }

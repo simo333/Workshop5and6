@@ -4,14 +4,21 @@
 <html>
 <head>
     <title>Add book</title>
+    <style>
+        .errors {
+            color: red;
+            font-weight: bold;
+            padding-left: 3px;
+        }
+    </style>
 </head>
 <body>
-<form:form method="post">
-    Title: <input type="text" name="title"/><br>
-    Author: <input type="text" name="author"/><br>
-    Type: <input type="text" name="type"/><br>
-    Isbn: <input type="text" name="isbn"/><br>
-    Publisher: <input type="text" name="publisher"/><br>
+<form:form method="post" modelAttribute="book">
+    Title: <form:input path="title"/><form:errors path="title" cssClass="errors"/><br>
+    Author: <form:input path="author"/><form:errors path="author" cssClass="errors"/><br>
+    Type: <form:input path="type"/><form:errors path="type" cssClass="errors"/><br>
+    Isbn: <form:input path="isbn"/><form:errors path="isbn" cssClass="errors"/><br>
+    Publisher: <form:input path="publisher"/><form:errors path="publisher" cssClass="errors"/><br>
     <button type="submit">Create</button>
 </form:form>
 <a href="<c:url value="/admin/books/all"/>">Back to list</a>

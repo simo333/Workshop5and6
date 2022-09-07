@@ -1,6 +1,9 @@
 package pl.workshop5.model;
 
+import org.hibernate.validator.constraints.Length;
+
 import javax.persistence.*;
+import javax.validation.constraints.NotNull;
 
 @Entity
 @Table(name = "books")
@@ -8,10 +11,20 @@ public class Book {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
+    @NotNull
+    @Length(min = 2, max = 10)
     private String isbn;
+    @NotNull
+    @Length(min = 2, max = 50)
     private String title;
+    @NotNull
+    @Length(min = 2, max = 50)
     private String author;
+    @NotNull
+    @Length(min = 2, max = 50)
     private String publisher;
+    @NotNull
+    @Length(min = 2, max = 50)
     private String type;
 
     public Book(String isbn, String title, String author, String publisher, String type) {
